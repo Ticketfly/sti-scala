@@ -1,0 +1,6 @@
+#bintray--sbt-rpm - packages by  from Bintray
+[bintray--sbt-rpm]
+name=bintray--sbt-rpm
+baseurl=http://dl.bintray.com/sbt/rpm
+gpgcheck=0
+enabled=1

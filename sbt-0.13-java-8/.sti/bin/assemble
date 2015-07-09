@@ -1,0 +1,39 @@
+#!/bin/bash -e
+#
+# S2I assemble script for the 'sti-scala' image.
+# The 'assemble' script builds your application source ready to run.
+#
+# For more information refer to the documentation:
+#	https://github.com/openshift/source-to-image/blob/master/docs/builder_image.md
+#
+
+if [ "$1" = "-h" ]; then
+	# If the 'sti-scala' assemble script is executed with '-h' flag,
+	# print the usage.
+	exec /usr/local/sti/usage
+fi
+
+# Restore artifacts from the previous build (if they exist).
+#
+if [ "$(ls /tmp/artifacts/ 2>/dev/null)" ]; then
+  echo "---> Restoring build artifacts"
+  cp -Rf /tmp/artifacts/. ./
+fi
+
+echo "---> Installing application source"
+cp -Rf /tmp/src/. ./
+
+echo "---> Building application from source"
+sbt stage
+
+echo "---> Detecting univarsal script and updating permissions"
+SCRIPT_COUNT=$(find target/universal/stage/bin -type f -executable | wc -l)
+
+if [ "$SCRIPT_COUNT" -eq "1" ]
+then
+  SCRIPT=$(find target/universal/stage/bin -type f -executable)
+  chmod a+x $SCRIPT
+else
+  echo "Found $SCRIPT_COUNT scripts instead of one. Exiting."
+  exit 0
+fi

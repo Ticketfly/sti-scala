@@ -1,0 +1,41 @@
+{
+    "kind": "List",
+    "apiVersion": "v1",
+    "metadata": {},
+    "items": [
+      {
+        "kind": "ImageStream",
+        "apiVersion": "v1",
+        "metadata": {
+          "name": "sbt"
+        },
+        "spec": {
+        }
+      },
+      {
+          "kind": "BuildConfig",
+          "apiVersion": "v1",
+          "metadata": {
+              "name": "sbt-0.13-java8-centos7"
+          },
+          "spec": {
+              "source": {
+                  "type": "Git",
+                  "git": {
+                      "uri": "https://github.com/Ticketfly/sti-scala.git"
+                  },
+                  "contextDir": "sbt-0.13-java-8"
+              },
+              "strategy": {
+                  "type": "Docker"
+              },
+              "output": {
+                  "to": {
+                      "kind": "ImageStreamTag",
+                      "name": "sbt:0.13"
+                  }
+              }
+          }
+      }
+    ]
+}
