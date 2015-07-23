@@ -17,6 +17,8 @@ RUN yum install -y --enablerepo=centosplus \
     java-${JAVA_VERSION}-openjdk java-${JAVA_VERSION}-openjdk-devel sbt-${SBT_VERSION} && \
     yum clean all -y
     
+RUN cd /tmp; sbt about
+    
 RUN echo 1 | alternatives --config java
 RUN echo 2 | alternatives --config javac
 
