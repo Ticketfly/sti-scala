@@ -26,6 +26,4 @@ COPY ./.sti/bin/ /usr/local/sti
 
 EXPOSE 9000
 
-USER default
-
 CMD ["usage"]
