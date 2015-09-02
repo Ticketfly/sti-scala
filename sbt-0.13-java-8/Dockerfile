@@ -8,8 +8,9 @@ ENV JAVA_VERSION 1.8.0
 
 LABEL io.k8s.description="Build and run Scala applications" \
       io.k8s.display-name="SBT 0.13.8" \
-      io.openshift.expose-services="9000:http" \
-      io.openshift.tags="builder,scala,sbt"
+      io.openshift.expose-services="9000:http,8778:jolokia" \
+      io.openshift.tags="builder,scala,sbt" \
+      io.openshift.min-memory="512Mi"
 
 ADD bintray-sbt-rpm.repo /etc/yum.repos.d/bintray-sbt-rpm.repo
 
@@ -25,6 +26,7 @@ RUN echo 2 | alternatives --config javac
 COPY ./.sti/bin/ /usr/local/sti
 
 EXPOSE 9000
+EXPOSE 8778
 
 USER 1001
 
