@@ -26,14 +26,6 @@ cp -Rf /tmp/src/. ./
 echo "---> Building application from source"
 sbt stage
 
-echo "---> Detecting univarsal script and updating permissions"
-SCRIPT_COUNT=$(find target/universal/stage/bin -type f -executable | wc -l)
-
-if [ "$SCRIPT_COUNT" -eq "1" ]
-then
-  SCRIPT=$(find target/universal/stage/bin -type f -executable)
-  chmod a+x $SCRIPT
-else
-  echo "Found $SCRIPT_COUNT scripts instead of one. Exiting."
-  exit 0
-fi
+echo "---> Updating script permissions"
+chgrp 0 target/universal/stage/bin/*
+chmod g+x target/universal/stage/bin/*

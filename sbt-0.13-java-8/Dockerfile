@@ -3,11 +3,11 @@ FROM openshift/base-centos7
 
 MAINTAINER Patrick Tescher <patrickt@ticketfly.com>
 
-ENV SBT_VERSION 0.13.8
+ENV SBT_VERSION 0.13.9
 ENV JAVA_VERSION 1.8.0
 
 LABEL io.k8s.description="Build and run Scala applications" \
-      io.k8s.display-name="SBT 0.13.8" \
+      io.k8s.display-name="SBT 0.13.9" \
       io.openshift.expose-services="9000:http,8778:jolokia" \
       io.openshift.tags="builder,scala,sbt" \
       io.openshift.min-memory="512Mi"
