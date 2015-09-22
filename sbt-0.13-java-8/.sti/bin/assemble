@@ -27,5 +27,6 @@ echo "---> Building application from source"
 sbt stage
 
 echo "---> Updating script permissions"
+rm target/universal/stage/bin/*.bat
 chgrp 0 target/universal/stage/bin/*
 chmod g+x target/universal/stage/bin/*
