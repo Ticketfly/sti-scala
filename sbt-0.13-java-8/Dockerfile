@@ -18,7 +18,8 @@ RUN yum install -y --enablerepo=centosplus \
     java-${JAVA_VERSION}-openjdk java-${JAVA_VERSION}-openjdk-devel sbt-${SBT_VERSION} && \
     yum clean all -y
 
-RUN cd /tmp; sbt about
+RUN sbt -ivy /opt/app-root/src/.ivy2 about
+RUN chown -R 1001:0 /opt/app-root/src/.ivy2; chmod -R g+rw /opt/app-root/src/.ivy2
 
 RUN echo 1 | alternatives --config java
 RUN echo 2 | alternatives --config javac
