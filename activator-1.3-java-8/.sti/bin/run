@@ -1,0 +1,19 @@
+#!/bin/bash -e
+#
+# S2I run script for the 'sti-scala' image.
+# The run script executes the server that runs your application.
+#
+# For more information see the documentation:
+#	https://github.com/openshift/source-to-image/blob/master/docs/builder_image.md
+#
+
+SCRIPT_COUNT=$(find target/universal/stage/bin -type f -executable | wc -l)
+
+if [ "$SCRIPT_COUNT" -eq "1" ]
+then
+  SCRIPT=$(find target/universal/stage/bin -type f -executable)
+  exec $SCRIPT -Dpidfile.path=/tmp/app.pid
+else
+  echo "Found $SCRIPT_COUNT scripts instead of one. Exiting."
+  exit 0
+fi
