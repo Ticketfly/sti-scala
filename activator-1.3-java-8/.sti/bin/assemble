@@ -17,11 +17,13 @@ fi
 #
 if [ "$(ls /tmp/artifacts/ 2>/dev/null)" ]; then
   echo "---> Restoring build artifacts"
-  cp -Rf /tmp/artifacts/. ./
+  cp -Rn /tmp/artifacts/. ./
+	rm -rf /tmp/artifacts
 fi
 
 echo "---> Installing application source"
-cp -Rf /tmp/src/. ./
+cp -Rn /tmp/src/. ./
+rm -rf /tmp/src
 
 echo "---> Building application from source"
 sbt stage

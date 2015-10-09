@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+curl https://downloads.typesafe.com/typesafe-activator/1.3.6/typesafe-activator-1.3.6-minimal.zip > /tmp/typesafe-activator-1.3.6-minimal.zip
+
+unzip /tmp/typesafe-activator-1.3.6-minimal.zip
+activator-1.3.6-minimal/activator -Dsbt.ivy.home=/opt/app-root/src/.ivy2 new play-scala play-scala
+
+pushd play-scala
+./activator -Dsbt.ivy.home=/opt/app-root/src/.ivy2 update
+popd
+
+rm -rf play-scala activator-1.3.6-minimal
