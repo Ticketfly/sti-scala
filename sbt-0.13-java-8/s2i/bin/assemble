@@ -27,7 +27,7 @@ rm -rf /tmp/src
 
 echo "---> Building application from source"
 sbt stage
-chmod -R g+rw .sbt/boot
+chmod -R g+rw .sbt .ivy
 
 echo "---> Updating script permissions"
 rm target/universal/stage/bin/*.bat
