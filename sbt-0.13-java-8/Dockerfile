@@ -24,11 +24,11 @@ RUN chown -R 1001:0 /opt/app-root/src/.ivy2; chmod -R g+rw /opt/app-root/src/.iv
 RUN echo 1 | alternatives --config java
 RUN echo 2 | alternatives --config javac
 
-COPY ./.sti/bin/ /usr/local/sti
+COPY ./s2i/bin/ $STI_SCRIPTS_PATH
 
 EXPOSE 9000
 EXPOSE 8778
 
 USER 1001
 
-CMD ["usage"]
+CMD $STI_SCRIPTS_PATH/usage
