@@ -18,13 +18,13 @@ realpath() {
 if [[ "$OSTYPE" == "darwin"* ]]; then
   test_dir="$(realpath $(dirname "${BASH_SOURCE[0]}"))"
   image_dir=$(realpath ${test_dir}/..)
-  scripts_url="file://${image_dir}/.sti/bin"
+  scripts_url="file://${image_dir}/s2i/bin"
   cid_file="$(mktemp $TMPDIR/$(uuidgen).cid)"
   rm $cid_file
 else
   test_dir="$(readlink -zf $(dirname "${BASH_SOURCE[0]}"))"
   image_dir=$(readlink -zf ${test_dir}/..)
-  scripts_url="file://${image_dir}/.sti/bin"
+  scripts_url="file://${image_dir}/s2i/bin"
   cid_file=$(mktemp -u --suffix=.cid)
 fi
 
@@ -148,5 +148,4 @@ wait_for_cid
 test_connection
 check_result $?
 
-cleanup
-
+#cleanup
