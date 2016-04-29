@@ -7,15 +7,6 @@
         "kind": "ImageStream",
         "apiVersion": "v1",
         "metadata": {
-          "name": "sbt"
-        },
-        "spec": {
-        }
-      },
-      {
-        "kind": "ImageStream",
-        "apiVersion": "v1",
-        "metadata": {
           "name": "scala"
         },
         "spec": {
@@ -25,7 +16,7 @@
           "kind": "BuildConfig",
           "apiVersion": "v1",
           "metadata": {
-              "name": "sbt-0.13-java8-centos7"
+              "name": "scala-sbt-0.13"
           },
           "spec": {
               "source": {
@@ -41,7 +32,7 @@
               "output": {
                   "to": {
                       "kind": "ImageStreamTag",
-                      "name": "sbt:0.13"
+                      "name": "scala:sbt-0.13"
                   }
               }
           }
