@@ -1,0 +1,48 @@
+---
+apiVersion: v1
+items:
+  - apiVersion: v1
+    kind: ImageStream
+    metadata:
+      name: scala
+    spec: {}
+  - apiVersion: v1
+    kind: BuildConfig
+    metadata:
+      name: scala-sbt-0.13
+    spec:
+      output:
+        to:
+          kind: ImageStreamTag
+          name: "scala:sbt-0.13"
+      source:
+        contextDir: sbt-0.13-java-8
+        git:
+          ref: master
+          uri: "https://github.com/Ticketfly/sti-scala.git"
+        type: Git
+        sourceSecret:
+          name: github-https
+      strategy:
+        type: Docker
+  - apiVersion: v1
+    kind: BuildConfig
+    metadata:
+      name: scala-latest
+    spec:
+      output:
+        to:
+          kind: ImageStreamTag
+          name: "scala:latest"
+      source:
+        contextDir: sbt-0.13-java-8
+        git:
+          ref: master
+          uri: "https://github.com/Ticketfly/sti-scala.git"
+        type: Git
+        sourceSecret:
+          name: github-https
+      strategy:
+        type: Docker
+kind: List
+metadata: {}
