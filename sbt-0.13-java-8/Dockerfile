@@ -15,7 +15,7 @@ LABEL io.k8s.description="Build and run Scala applications" \
 ADD bintray-sbt-rpm.repo /etc/yum.repos.d/bintray-sbt-rpm.repo
 
 RUN yum install -y --enablerepo=centosplus \
-    java-${JAVA_VERSION}-openjdk java-${JAVA_VERSION}-openjdk-devel sbt-${SBT_VERSION} && \
+    java-${JAVA_VERSION}-openjdk java-${JAVA_VERSION}-openjdk-devel sbt-${SBT_VERSION} thrift && \
     yum clean all -y
 
 RUN sbt -ivy /opt/app-root/src/.ivy2 about
