@@ -1,4 +1,5 @@
-IMAGE_NAME = sbt-0.13-java-8-centos7
+
+IMAGE_NAME = scala
 
 build:
 	docker build -t $(IMAGE_NAME) .
