@@ -41,7 +41,7 @@ resulting image with [Docker](http://docker.io) execute:
 
 *  **For CentOS based image**
     ```
-    $ sti build https://github.com/ticketfly/sti-scala.git --context-dir=sbt-0.13-java-8/test/test-app/ ticketfly/scala-0.13-java-8-centos7 scala-test-app
+    $ s2i build https://github.com/ticketfly/sti-scala.git --context-dir=sbt-0.13-java-8/test/test-app/ ticketfly/sbt-0.13-java8-centos7 scala-test-app
     $ docker run -p 9000:9000 scala-test-app
     ```
 
